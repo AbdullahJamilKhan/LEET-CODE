@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool yes(int mid,vector<int>& weights,int days){
+	int m=mid;
+	int day=1;
+	int w=0;
+	for(int i=0;i<weights.size();i++){
+		w+=weights[i];
+		if(weights[i]>m){return false;}
+		else if(w>m){w=weights[i];day++;}
+	}
+	return(days>=day);
+}
+int shipWithinDays(vector<int>& weights, int days) {
+	int n=(accumulate(weights.begin(),weights.end(),0));;
+	int mn=n/days;
+	int mx=n;
+	while(mx>mn){
+		int md=(mn+mx)/2;
+		if(yes(md,weights,days)){mx=md;}
+		else{mn=md+1;}
+	}
+	return mn;
+}
+int main(){
+	int n,m;
+	cin>>n>>m;
+	vector<int >weights;
+	for(int i=0;i<n;i++){
+		int t;
+		cin>>t;
+		weights.push_back(t);
+	}
+	cout<<shipWithinDays(weights,m)<<endl;; 
+}
