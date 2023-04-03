@@ -1,0 +1,32 @@
+class Solution {
+public:
+
+bool yes(vector<int>& ribbons,int k,int mid){
+    long long rd=0;
+    for(int i=0;i<ribbons.size();i++){
+        rd+=ribbons[i]/mid;
+    }
+  	return(rd<k);
+}
+
+    int maxLength(vector<int>& ribbons, int k) {
+      long long sm=(long long)accumulate(ribbons.begin(),ribbons.end(),0LL);
+       if(k>sm){
+       	return 0;
+       }
+       else{ 
+	       long long mx=sm/k+1;
+	       long long mn=1;
+	        while(mx>mn+1){
+	          long long mid=(mx+mn)/2;
+	         	if(yes(ribbons,k,mid)){
+	           		mx=mid;
+	           	}
+	           	else{
+	           		mn=mid;
+	     		 }
+	     	}
+				 return(mn);
+	}
+}
+};
