@@ -1,0 +1,11 @@
+
+  int getIndex(ArrayReader &reader) {
+  	int mx=reader.lenght();
+  	int mn=0;
+  	while(mx>1){
+  		mx/=2;
+  		int y=reader.compareSub(mn,mn+mx-1,mn+mx,mn+(2*mx)-1);
+  		if(!y){return mn+(2*mx);}
+  		else if(y<0){mn+=mx;}
+  	}return(mn);
+  }
