@@ -1,0 +1,32 @@
+class Solution {
+	#define ld long double
+	#define ll long long
+	#define vll vector <long long> 
+public:
+    double findMedianSortedArrays(vector<int>& a, vector<int>& b) {
+  ll aa=a.size();
+	ll bb=b.size();
+	ll k=0,j=0;
+	vll s;
+	while(k<aa and j<bb )
+	{
+		if(a[k]>b[j])
+		{
+			s.push_back(b[j]);
+			j++;
+		}
+		else{
+			s.push_back(a[k]);
+			k++;
+		}
+	}
+	while(k<aa){s.push_back(a[k]);k++;}
+	while(j<bb){s.push_back(b[j]);j++;}
+	ll mid = (aa+bb)/2;
+	// cout<<s[mid]<<""<<s[mid-1]<<endl;
+	if((aa+bb)%2==0){
+		return ((ld)(s[mid]+s[mid-1]))/2;
+		}
+	else{return((ld)s[mid]);}   
+    }
+};
