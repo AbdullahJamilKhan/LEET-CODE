@@ -1,0 +1,18 @@
+
+class Solution {
+   
+public:
+    int search(const ArrayReader& reader, int target) {
+       long long mn=-1;
+       long long mx=1e4+40;
+       long long y=pow(2,31)-1;
+       while(mn+1<mx){
+           long long md=(mn+mx)/2;
+           long long x=reader.get(md);
+           if(x==target){return md;}
+           else if(x==y or x>target){mx=md;}
+           else{mn=md;}
+       }
+       return -1;
+    }
+};
